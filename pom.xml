@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>foo</groupId>
-	<artifactId>projet-glpoo</artifactId>
+	<artifactId>projetglpoo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -34,7 +34,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>foo.projet-glpoo.Launcher</mainClass>
+							<mainClass>foo.projetglpoo.Launcher</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
