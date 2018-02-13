@@ -12,12 +12,12 @@ public class RandomAPI implements EuroMillionsAPI {
     private void genRandomYear(int year) {
         final List<EuroMillionsResult> results = new ArrayList<>();
 
+        final Random rng = new Random();
+
         for (int i = 0; i < 20; i++) {
             final Calendar cal = Calendar.getInstance();
             final int[] numbers = new int[5];
             final int[] stars = new int[2];
-
-            Random rng = new Random();
 
             // TODO: better date
             cal.set(year, Calendar.JANUARY, 1);
