@@ -26,7 +26,7 @@ public class MashapeAPI implements EuroMillionsAPI {
 					.header("X-Mashape-Key", apiKey).header("Accept", "text/plain").asString();
 			if (response.getStatus() != 200)
 				return null;
-			jsonString = response.getBody().toString();
+			jsonString = response.getBody();
 		} catch (UnirestException e) {
 			return null;
 		}
