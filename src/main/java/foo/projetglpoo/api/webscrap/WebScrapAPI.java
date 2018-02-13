@@ -1,11 +1,10 @@
 package foo.projetglpoo.api.webscrap;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import foo.projetglpoo.api.EuroMillionsAPI;
 import foo.projetglpoo.api.EuroMillionsResult;
-import foo.projetglpoo.api.SimpleEuroMillionsResult;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WebScrapAPI implements EuroMillionsAPI {
     @Override

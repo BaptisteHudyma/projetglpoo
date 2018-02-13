@@ -16,7 +16,7 @@ public class Launcher {
 
         EuroMillionsAPI api = new RandomAPI();
         List<EuroMillionsResult> results = api.getResults(2017);
-        for (EuroMillionsResult result: results) {
+        for (EuroMillionsResult result : results) {
             log.debug("result:");
             log.debug(result.getDate());
             log.debug(Arrays.toString(result.getNumbers()));
