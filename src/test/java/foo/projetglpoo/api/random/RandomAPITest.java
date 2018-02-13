@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RandomAPITest {
-    private static EuroMillionsAPI api;
+    private EuroMillionsAPI api;
 
     @Before
-    public void doBeforeTests() {
+    public void setUp() {
         api = new RandomAPI();
     }
 
