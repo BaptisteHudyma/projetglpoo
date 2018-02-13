@@ -1,11 +1,9 @@
 package foo.projetglpoo.api;
 
+import java.util.Date;
+
 public interface EuroMillionsResult {
-	public int getJackpot();
-
-	public int getNextJackpot();
-
-	public int[] getNumbers();
-
-	public int[] getStars();
+    Date getDate();
+    int[] getNumbers();
+    int[] getStars();
 }

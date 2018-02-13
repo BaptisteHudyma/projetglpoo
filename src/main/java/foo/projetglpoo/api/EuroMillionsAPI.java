@@ -1,5 +1,7 @@
 package foo.projetglpoo.api;
 
+import java.util.List;
+
 public interface EuroMillionsAPI {
-	public EuroMillionsResult getLastResult();
+    List<EuroMillionsResult> getResults(int year);
 }

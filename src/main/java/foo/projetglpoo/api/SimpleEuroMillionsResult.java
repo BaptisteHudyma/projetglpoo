@@ -1,43 +1,38 @@
 package foo.projetglpoo.api;
 
+import java.util.Date;
+
 public class SimpleEuroMillionsResult implements EuroMillionsResult {
-	private final int jackpot;
-	private final int nextJackpot;
-	private final int[] numbers;
-	private final int[] stars;
+    private final Date date;
+    private final int[] numbers;
+    private final int[] stars;
 
-	public SimpleEuroMillionsResult(int jackpot, int nextJackpot, int[] numbers, int[] stars) {
-		if (numbers.length != 5) {
-			throw new IllegalArgumentException("numbers must have 5 fields");
-		}
+    public SimpleEuroMillionsResult(Date date, int[] numbers, int[] stars) {
+        if (numbers.length != 5) {
+            throw new IllegalArgumentException("numbers must have 5 fields");
+        }
 
-		if (stars.length != 2) {
-			throw new IllegalArgumentException("stars must have 2 fields");
-		}
+        if (stars.length != 2) {
+            throw new IllegalArgumentException("stars must have 2 fields");
+        }
 
-		this.jackpot = jackpot;
-		this.nextJackpot = nextJackpot;
-		this.numbers = numbers;
-		this.stars = stars;
-	}
+        this.date = date;
+        this.numbers = numbers;
+        this.stars = stars;
+    }
 
-	@Override
-	public int getJackpot() {
-		return jackpot;
-	}
+    @Override
+    public Date getDate() {
+        return date;
+    }
 
-	@Override
-	public int getNextJackpot() {
-		return nextJackpot;
-	}
+    @Override
+    public int[] getNumbers() {
+        return numbers;
+    }
 
-	@Override
-	public int[] getNumbers() {
-		return numbers;
-	}
-
-	@Override
-	public int[] getStars() {
-		return stars;
-	}
+    @Override
+    public int[] getStars() {
+        return stars;
+    }
 }
