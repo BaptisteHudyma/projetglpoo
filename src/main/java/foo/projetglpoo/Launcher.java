@@ -1,21 +1,20 @@
 package foo.projetglpoo;
 
-import java.util.Arrays;
-import java.util.List;
-
+import foo.projetglpoo.api.EuroMillionsAPI;
+import foo.projetglpoo.api.EuroMillionsResult;
+import foo.projetglpoo.api.random.RandomAPI;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
-import foo.projetglpoo.api.EuroMillionsAPI;
-import foo.projetglpoo.api.EuroMillionsResult;
-import foo.projetglpoo.api.webscrap.WebScrapAPI;
+import java.util.Arrays;
+import java.util.List;
 
 public class Launcher {
     public static void main(String[] args) {
         BasicConfigurator.configure();
         Logger log = Logger.getLogger(Launcher.class);
 
-        EuroMillionsAPI api = new WebScrapAPI();
+        EuroMillionsAPI api = new RandomAPI();
         List<EuroMillionsResult> results = api.getResults(2017);
         for (EuroMillionsResult result: results) {
             log.debug("result:");
