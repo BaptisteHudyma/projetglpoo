@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 import foo.projetglpoo.api.EuroMillionsAPI;
 import foo.projetglpoo.api.EuroMillionsResult;
-import foo.projetglpoo.api.mashape.MashableAPI;
+import foo.projetglpoo.api.mashape.MashapeAPI;
 
 public class Launcher {
 	public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Launcher {
 			return;
 		}
 
-		EuroMillionsAPI api = new MashableAPI(conf.getProperty("mashape_key"));
+		EuroMillionsAPI api = new MashapeAPI(conf.getProperty("mashape_key"));
 		EuroMillionsResult result = api.getLastResult();
 		log.debug(Arrays.toString(result.getNumbers()));
 		log.debug(Arrays.toString(result.getStars()));

@@ -10,10 +10,10 @@ import foo.projetglpoo.api.EuroMillionsAPI;
 import foo.projetglpoo.api.EuroMillionsResult;
 import foo.projetglpoo.api.SimpleEuroMillionsResult;
 
-public class MashableAPI implements EuroMillionsAPI {
+public class MashapeAPI implements EuroMillionsAPI {
 	private final String apiKey;
 
-	public MashableAPI(String apiKey) {
+	public MashapeAPI(String apiKey) {
 		this.apiKey = apiKey;
 	}
 
