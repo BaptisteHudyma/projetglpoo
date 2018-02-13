@@ -17,17 +17,17 @@ public class Launcher {
 		BasicConfigurator.configure();
 		Logger log = Logger.getLogger(Launcher.class);
 		log.debug("Hello World");
-		
+
 		Properties conf = new Properties();
 		try {
-			InputStream in = Launcher.class.getResourceAsStream("api.properties");			
+			InputStream in = Launcher.class.getResourceAsStream("api.properties");
 			conf.load(in);
 			in.close();
 		} catch (IOException e) {
 			log.fatal("could not load api.properties", e);
 			return;
 		}
-		
+
 		EuroMillionsAPI api = new MashableAPI(conf.getProperty("mashape_key"));
 		EuroMillionsResult result = api.getLastResult();
 		log.debug(Arrays.toString(result.getNumbers()));

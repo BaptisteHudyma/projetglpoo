@@ -22,7 +22,8 @@ public class MashableAPI implements EuroMillionsAPI {
 		String jsonString;
 
 		try {
-			HttpResponse<String> response = Unirest.get("https://euromillions.p.mashape.com/ResultsService/FindLast").header("X-Mashape-Key", apiKey).header("Accept", "text/plain").asString();
+			HttpResponse<String> response = Unirest.get("https://euromillions.p.mashape.com/ResultsService/FindLast")
+					.header("X-Mashape-Key", apiKey).header("Accept", "text/plain").asString();
 			if (response.getStatus() != 200)
 				return null;
 			jsonString = response.getBody().toString();
@@ -31,7 +32,7 @@ public class MashableAPI implements EuroMillionsAPI {
 		}
 
 		JSONObject result = new JSONObject(jsonString);
-		
+
 		final int jackpot = result.getInt("Jackpot");
 		final int nextJackpot = result.getInt("NextJackpot");
 
