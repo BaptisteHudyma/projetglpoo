@@ -27,8 +27,6 @@ public class MashableAPI implements EuroMillionsAPI {
 				return null;
 			jsonString = response.getBody().toString();
 		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return null;
 		}
 
