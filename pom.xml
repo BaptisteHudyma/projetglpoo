@@ -5,7 +5,7 @@
     <groupId>foo</groupId>
     <artifactId>projetglpoo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
 
     <name>foo.projet-glpoo</name>
     <url>http://maven.apache.org</url>
@@ -42,6 +42,16 @@
                             <mainClass>foo.projetglpoo.Launcher</mainClass>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>*</Export-Package>
+                    </instructions>
                 </configuration>
             </plugin>
         </plugins>
