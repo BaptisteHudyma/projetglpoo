@@ -1,12 +1,12 @@
-package foo.projetglpoo.api.random;
+package foo.projetglpoo.dao.random;
 
-import foo.projetglpoo.api.EuroMillionsAPI;
-import foo.projetglpoo.api.EuroMillionsResult;
-import foo.projetglpoo.api.SimpleEuroMillionsResult;
+import foo.projetglpoo.dao.EuroMillionsDAO;
+import foo.projetglpoo.dao.EuroMillionsResult;
+import foo.projetglpoo.dao.SimpleEuroMillionsResult;
 
 import java.util.*;
 
-public class RandomAPI implements EuroMillionsAPI {
+public class RandomDAO implements EuroMillionsDAO {
     private final Map<Integer, List<EuroMillionsResult>> resultsByYear = new HashMap<>();
 
     private void genRandomYear(int year) {

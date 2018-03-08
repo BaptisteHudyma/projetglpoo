@@ -1,16 +1,16 @@
-package foo.projetglpoo.api.random;
+package foo.projetglpoo.dao.random;
 
-import foo.projetglpoo.api.EuroMillionsAPI;
+import foo.projetglpoo.dao.EuroMillionsDAO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RandomAPITest {
-    private EuroMillionsAPI api;
+public class RandomDAOTest {
+    private EuroMillionsDAO api;
 
     @Before
     public void setUp() {
-        api = new RandomAPI();
+        api = new RandomDAO();
     }
 
     @Test

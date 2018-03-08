@@ -1,8 +1,8 @@
 package foo.projetglpoo;
 
-import foo.projetglpoo.api.EuroMillionsAPI;
-import foo.projetglpoo.api.EuroMillionsResult;
-import foo.projetglpoo.api.random.RandomAPI;
+import foo.projetglpoo.dao.EuroMillionsDAO;
+import foo.projetglpoo.dao.EuroMillionsResult;
+import foo.projetglpoo.dao.random.RandomDAO;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -14,7 +14,7 @@ public class Launcher {
         BasicConfigurator.configure();
         Logger log = Logger.getLogger(Launcher.class);
 
-        EuroMillionsAPI api = new RandomAPI();
+        EuroMillionsDAO api = new RandomDAO();
         List<EuroMillionsResult> results = api.getResults(2017);
         for (EuroMillionsResult result : results) {
             log.debug("result:");

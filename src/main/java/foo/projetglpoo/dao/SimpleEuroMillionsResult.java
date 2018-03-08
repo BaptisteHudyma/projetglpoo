@@ -1,4 +1,4 @@
-package foo.projetglpoo.api;
+package foo.projetglpoo.dao;
 
 import java.util.Date;
 

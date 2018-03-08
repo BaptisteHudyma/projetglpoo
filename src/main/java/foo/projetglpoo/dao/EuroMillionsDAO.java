@@ -1,7 +1,7 @@
-package foo.projetglpoo.api;
+package foo.projetglpoo.dao;
 
 import java.util.List;
 
-public interface EuroMillionsAPI {
+public interface EuroMillionsDAO {
     List<EuroMillionsResult> getResults(int year);
 }
