@@ -1,53 +1,56 @@
 package foo.projetglpoo.tableMaster;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import foo.projetglpoo.drawingFunctions.drawingFunctionsClass;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 public class TableCreator {
-	DefaultTableModel model;
-	JTable lotoTable;
-	JFrame Window;
+	private DefaultTableModel model;
+	private JTable lotoTable;
+	private JFrame Window;
 
-	JButton LaunchButton;
+	private JButton LaunchButton;
+	private JComboBox dropDownMenu;
+
+	private drawingFunctionsClass drawClass;
 
 	public void CreateTable(JFrame MainWindow, Object[][] tableDatas) {
 		Window = MainWindow;
 
-		final String[] enTetes = { "Date", "1", "2", "3", "4", "5", "Star1", "Star2" };
-		SetTableModel(tableDatas, enTetes);
+		final String[] headTitles = { "Date", "1", "2", "3", "4", "5", "Star1", "Star2" };
+		SetTableModel(tableDatas, headTitles);
 		InitTableProp();
 		addTableButtons();
 	}
 
-	void addTableButtons() {
+	private void addTableButtons() {
 		final JPanel ButtonPanel = new JPanel();
 		ButtonPanel.setBackground(Color.GRAY);
-		Window.getContentPane().add(ButtonPanel, BorderLayout.SOUTH);
+		Window.getContentPane().add(ButtonPanel, BorderLayout.EAST);
 
+		drawClass = new drawingFunctionsClass();
+		String[] typeOfGraphicsToDrawn = drawClass.dropDownInitialisation();
+
+		dropDownMenu = new JComboBox<>( typeOfGraphicsToDrawn );
 		LaunchButton = new JButton(new LaunchGraphicGenAction());
+		JButton dataVisualB = new JButton(new LaunchDataVisual());
+
+		ButtonPanel.setLayout(new GridLayout(10,1, 0,10));
+		ButtonPanel.add(dataVisualB);
+		ButtonPanel.add(dropDownMenu);
 		ButtonPanel.add(LaunchButton);
-		
-		JButton datavisualB = new JButton(new LaunchDataVisual());
-		ButtonPanel.add(datavisualB);		
 
 		LaunchButton.setEnabled(false);
-		datavisualB.setEnabled(true);
+		dataVisualB.setEnabled(true);
 	}
 
-	void InitTableProp() {
+	private void InitTableProp() {
 		lotoTable = new JTable(model);
 
 		Window.getContentPane().add(new JScrollPane(lotoTable));
@@ -55,8 +58,8 @@ public class TableCreator {
 		lotoTable.getSelectionModel().addListSelectionListener(new EventListener());	//add event listener to table so it can activate and deactivate buttons
 	}
 
-	void SetTableModel(Object[][] tableDatas, String[] enTetes) {	//model for column order
-		model = new DefaultTableModel(tableDatas, enTetes) {
+	private void SetTableModel(Object[][] dataTable, String[] headTitle) {	//model for column order
+		model = new DefaultTableModel(dataTable, headTitle) {
 			@Override
 			public Class getColumnClass(int column) {
 				switch (column) {
@@ -70,45 +73,35 @@ public class TableCreator {
 	}
 
 	private class LaunchGraphicGenAction extends AbstractAction {
-		public LaunchGraphicGenAction() {
+		private LaunchGraphicGenAction() {
 			super("Graphics generation");
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			JFrame drawframe = new JFrame("A new window for data drawing");
-			drawframe.setVisible(true);
-
-			DrawDataSet(drawframe, getSelectedColumnsFromTab());
+			DrawDataSet(getSelectedColumnsFromTab());
 		}
 	}
 	
 	private class LaunchDataVisual extends AbstractAction {
 		public LaunchDataVisual() {
-			super("View dataset apparition");
+			super("View dataSet apparition");
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			JFrame drawframe = new JFrame("A new window for data visual");
-			drawframe.setVisible(true);
-			
-			dataVisualisation(drawframe, getSelectedColumnsFromTab());
+			dataVisualisation(getSelectedColumnsFromTab());
 		}
 	}
 
-	private class EventListener implements ListSelectionListener {	//Button ativation event
+	private class EventListener implements ListSelectionListener {	//Button activation event
 		public void valueChanged(ListSelectionEvent event) {
 			if (lotoTable.getSelectedRows().length > 0)
-			{
 				LaunchButton.setEnabled(true);
-			}
 			else
-			{
 				LaunchButton.setEnabled(false);
-			}
 		}
 	}
 
-	Object[][] getSelectedColumnsFromTab() {	//get all the selected cells
+	private Object[][] getSelectedColumnsFromTab() {	//return all the selected cells
 		int[] selected = lotoTable.getSelectedRows();
 
 		Object[][] tableToSend = new Object[selected.length][8];
@@ -120,14 +113,23 @@ public class TableCreator {
 		return tableToSend;
 	}
 
-	void DrawDataSet(JFrame drawnWindow, Object[][] dataSet) {
+	private void DrawDataSet(Object[][] dataSet) {
 		// GRAPHIC PART TO LINK
+		int dropDownIndex = dropDownMenu.getSelectedIndex();
+		if(drawClass.drawFunctionArray != null && dataSet != null ) {
+			if (dropDownIndex >= 0 && dropDownIndex < drawClass.drawFunctionArray.length) {
+				JFrame drawFrame = new JFrame("qrgdegv");
+				drawFrame.setVisible(true);
+				drawClass.drawFunctionArray[dropDownIndex].runDrawFunction(drawFrame, dataSet);
+			}
+		}
 	}
 	
-	void dataVisualisation(JFrame drawnWindow, Object[][] dataSet)
+	private void dataVisualisation(Object[][] dataSet)
 	{
-			//TODO : data visualisation with JTable
-		
+            //TODO : data visualisation with JTable
+		JFrame drawFrame = new JFrame("A new window for data drawing");
+		drawFrame.setVisible(true);
 	}
 
 }

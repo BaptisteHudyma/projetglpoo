@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 
 public class WindowsOpener extends JFrame {
 	
-	JFrame MainWindow;
-	TableCreator dataTable;	
+	private JFrame MainWindow;
+	private TableCreator dataTable;
 	
 	
 	public WindowsOpener(Dimension WindowSize)
@@ -14,8 +14,8 @@ public class WindowsOpener extends JFrame {
 		this.setSize(WindowSize);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
-		this.setTitle("Euromillion drawer");
-		
+		this.setTitle("EuroMillion drawer");
+		//TODO : set icon
 		MainWindow = this;
 	}
 
@@ -23,9 +23,7 @@ public class WindowsOpener extends JFrame {
 	{
 		dataTable = new TableCreator();
 		if(dataSet == null)
-		{
 			return;
-		}
 		dataTable.CreateTable( MainWindow , dataSet);
 	}
 	
