@@ -1,16 +1,13 @@
 package foo.projetglpoo;
 
 import foo.projetglpoo.dao.EuroMillionsDAO;
-import foo.projetglpoo.tableMaster.WindowsOpener;
-
 import foo.projetglpoo.dao.EuroMillionsResult;
 import foo.projetglpoo.dao.random.RandomDAO;
-
+import foo.projetglpoo.tableMaster.WindowsOpener;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
-import java.awt.Dimension;
-import java.sql.Date;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
