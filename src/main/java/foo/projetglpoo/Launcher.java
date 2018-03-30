@@ -1,11 +1,16 @@
 package foo.projetglpoo;
 
 import foo.projetglpoo.dao.EuroMillionsDAO;
+import foo.projetglpoo.tableMaster.WindowsOpener;
+
 import foo.projetglpoo.dao.EuroMillionsResult;
 import foo.projetglpoo.dao.random.RandomDAO;
+
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+import java.awt.Dimension;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,5 +27,34 @@ public class Launcher {
             log.debug(Arrays.toString(result.getNumbers()));
             log.debug(Arrays.toString(result.getStars()));
         }
+
+        LaunchWindow(results);
+    }
+
+    public static void LaunchWindow(List<EuroMillionsResult> results) {
+        Object[][] dataSet = new Object[results.size()][8];
+
+        int Cmpt = 0;
+        for (EuroMillionsResult result : results) {
+            dataSet[Cmpt][0] = result.getDate();
+
+            int[] Numbers = result.getNumbers();
+            for (int i = 0; i < 5; i++)
+                dataSet[Cmpt][i + 1] = Numbers[i];
+
+            int[] Stars = result.getStars();
+            for (int i = 0; i < 2; i++)
+                dataSet[Cmpt][i + 6] = Stars[i];
+            Cmpt++;
+        }
+
+        Dimension WindowDimension = new Dimension();
+        WindowDimension.setSize(800, 800);
+
+        WindowsOpener MainWindow = new WindowsOpener(WindowDimension);
+        MainWindow.addTableToWindow(dataSet);
+
+        //MainWindow.pack();
+        MainWindow.setVisible(true);
     }
 }
