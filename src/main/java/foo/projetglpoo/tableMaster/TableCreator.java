@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 
+import java.lang.Object;
+import java.util.*;
+
 public class TableCreator {
 	private DefaultTableModel model;
 	private JTable lotoTable;
@@ -118,18 +121,71 @@ public class TableCreator {
 		int dropDownIndex = dropDownMenu.getSelectedIndex();
 		if(drawClass.drawFunctionArray != null && dataSet != null ) {
 			if (dropDownIndex >= 0 && dropDownIndex < drawClass.drawFunctionArray.length) {
-				JFrame drawFrame = new JFrame("qrgdegv");
+				JFrame drawFrame = new JFrame(drawClass.dropDownInitialisation()[dropDownIndex]);
 				drawFrame.setVisible(true);
 				drawClass.drawFunctionArray[dropDownIndex].runDrawFunction(drawFrame, dataSet);
 			}
 		}
 	}
 	
-	private void dataVisualisation(Object[][] dataSet)
-	{
+	private void dataVisualisation(Object[][] dataSet) {
+		if(dataSet.length == 0)
+			return;
             //TODO : data visualisation with JTable
-		JFrame drawFrame = new JFrame("A new window for data drawing");
+		JFrame drawFrame = new JFrame("Data set visual");
+		drawFrame.setSize(500, 400);
 		drawFrame.setVisible(true);
+
+
+		Hashtable numberCoeff = new Hashtable();
+		for(int i=1; i<8; i++){
+			for(int j=0; j<dataSet.length; j++){
+				if( numberCoeff.get( dataSet[j][i] ) == null ){
+					int[] dataCounter = new int[7];
+					for(int g=0; g<7; g++)
+						dataCounter[g] = 0;
+					dataCounter[i-1] = 1;
+					numberCoeff.put( dataSet[j][i], dataCounter );
+				}
+				else{
+					System.out.println("Begin b");
+					int [] dataCounter = (int[])numberCoeff.get( dataSet[j][i] );
+					dataCounter[i-1] ++;
+					System.out.println("Finished b");
+					numberCoeff.put( dataSet[j][i], dataCounter);
+				}
+			}
+		}
+
+
+		Object[][] numberOfElements = new Object[ numberCoeff.size() ][8];
+		int dataIndex = 0;
+		Enumeration dataKeys = numberCoeff.keys();
+		while(dataKeys.hasMoreElements())
+		{
+			int reference = (int)dataKeys.nextElement();
+			int [] values = (int[])numberCoeff.get(reference);
+			numberOfElements[dataIndex][0] = reference;
+			for(int i=1; i<8; i++)
+				numberOfElements[dataIndex][i] = values[i - 1];
+			dataIndex++;
+		}
+
+
+		final String[] headTitles = { "Number", "1", "2", "3", "4", "5", "Star1", "Star2" };
+
+		DefaultTableModel dataModel = new DefaultTableModel(numberOfElements, headTitles) {
+			@Override
+			public Class getColumnClass(int column) {
+				switch (column) {
+					default:
+						return int.class;
+				}
+			}
+		};
+		JTable dataVisual = new JTable(dataModel);
+		drawFrame.getContentPane().add(new JScrollPane(dataVisual));
+		dataVisual.setAutoCreateRowSorter(true);
 	}
 
 }
