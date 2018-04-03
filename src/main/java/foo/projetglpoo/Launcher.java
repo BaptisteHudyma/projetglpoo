@@ -17,7 +17,7 @@ public class Launcher {
         Logger log = Logger.getLogger(Launcher.class);
 
         EuroMillionsDAO api = new RandomDAO();
-        List<EuroMillionsResult> results = api.getResults(2017);
+        List<EuroMillionsResult> results = api.getResults();
         for (EuroMillionsResult result : results) {
             log.debug("result:");
             log.debug(result.getDate());
