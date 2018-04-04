@@ -7,9 +7,8 @@ import foo.projetglpoo.dao.SimpleEuroMillionsResult;
 import java.util.*;
 
 public class RandomDAO implements EuroMillionsDAO {
-    private final Map<Integer, List<EuroMillionsResult>> resultsByYear = new HashMap<>();
-
-    private void genRandomYear(int year) {
+    @Override
+    public List<EuroMillionsResult> getResults() {
         final List<EuroMillionsResult> results = new ArrayList<>();
 
         final Random rng = new Random();
@@ -20,7 +19,7 @@ public class RandomDAO implements EuroMillionsDAO {
             final int[] stars = new int[2];
 
             // TODO: better date
-            cal.set(year, Calendar.JANUARY, 1);
+            cal.set(2017, Calendar.JANUARY, 1);
 
             for (int j = 0; j < numbers.length; j++) {
                 numbers[j] = rng.nextInt(50 - 1) + 1;
@@ -33,15 +32,6 @@ public class RandomDAO implements EuroMillionsDAO {
             results.add(new SimpleEuroMillionsResult(cal.getTime(), numbers, stars));
         }
 
-        resultsByYear.put(year, results);
-    }
-
-    @Override
-    public List<EuroMillionsResult> getResults(int year) {
-        if (!resultsByYear.containsKey(year)) {
-            genRandomYear(year);
-        }
-
-        return resultsByYear.get(year);
+        return results;
     }
 }

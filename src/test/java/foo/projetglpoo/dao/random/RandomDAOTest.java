@@ -15,6 +15,6 @@ public class RandomDAOTest {
 
     @Test
     public void testNotNull() {
-        Assert.assertNotNull(api.getResults(2010));
+        Assert.assertNotNull(api.getResults());
     }
 }

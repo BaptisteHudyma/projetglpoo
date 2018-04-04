@@ -2,7 +2,7 @@ package foo.projetglpoo;
 
 import foo.projetglpoo.dao.EuroMillionsDAO;
 import foo.projetglpoo.dao.EuroMillionsResult;
-import foo.projetglpoo.dao.random.RandomDAO;
+import foo.projetglpoo.dao.csv.CSVDAO;
 import foo.projetglpoo.tableMaster.WindowsOpener;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -16,8 +16,8 @@ public class Launcher {
         BasicConfigurator.configure();
         Logger log = Logger.getLogger(Launcher.class);
 
-        EuroMillionsDAO api = new RandomDAO();
-        List<EuroMillionsResult> results = api.getResults(2017);
+        EuroMillionsDAO api = new CSVDAO();
+        List<EuroMillionsResult> results = api.getResults();
         for (EuroMillionsResult result : results) {
             log.debug("result:");
             log.debug(result.getDate());
