@@ -1,6 +1,7 @@
 package foo.projetglpoo.drawingFunctions;
 
 import javax.swing.*;
+import foo.projetglpoo.drawingFunctions.fourier.*;
 
 public class drawingFunctionsClass {
 
@@ -16,8 +17,8 @@ public class drawingFunctionsClass {
     {	//TODO : REMPLIR LES FONCTIONS DESSINS ICI
         drawFunctionArray = new DrawFunction[2];
 
-        String [] typeOfGraphicsToDrawn = {"Exemple 1", "Exemple 2"};
-        drawFunctionArray[0] =  new FunctionDessins1();
+        String [] typeOfGraphicsToDrawn = {"Fourier", "Exemple 2"};
+        drawFunctionArray[0] =  new CallFourier();
         drawFunctionArray[1] =  new FunctionDessins2();
 
         if(drawFunctionArray == null || typeOfGraphicsToDrawn == null || drawFunctionArray.length != typeOfGraphicsToDrawn.length) {
@@ -28,11 +29,12 @@ public class drawingFunctionsClass {
     }
 
 
-    class FunctionDessins1 implements DrawFunction
+    class CallFourier implements DrawFunction
     {
         public void runDrawFunction(JFrame drawFrame, Object[][] dataSet)
         {
-            System.out.println("Exemple fonctionnel 1");
+            System.out.println("Drawing dataSet as a Fourier Series");
+            Fourier.start(drawFrame, dataSet);
         }
     }
 
