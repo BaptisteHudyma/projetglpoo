@@ -21,7 +21,6 @@ public class Fourier extends JPanel {
         int amount = 20;
 
         frame.add(new Fourier(amount));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
