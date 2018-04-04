@@ -45,7 +45,4 @@ public class drawingFunctionsClass {
             System.out.println("Exemple fonctionnel 2");
         }
     }
-
-
-
 }
